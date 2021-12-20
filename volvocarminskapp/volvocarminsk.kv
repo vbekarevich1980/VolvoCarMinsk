@@ -1,0 +1,194 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+
+MainScreen:
+
+<MainScreen>:
+
+
+    MDBottomNavigation:
+        id: navi
+        panel_color: get_color_from_hex("#ffffff")
+        text_color_active: get_color_from_hex("#2f5377")
+        use_text: False
+        widget_style: "ios"
+
+
+
+        MDBottomNavigationItem:
+            id: home_tab
+            name: 'home'
+            icon: 'home'
+            badge_icon: "numeric-10"
+            widget_style: "ios"
+
+            MDLabel:
+                text: 'HOME'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            id: buy_tab
+            name: 'buy'
+            icon: 'car-multiple'
+            badge_icon: "numeric-10"
+            widget_style: "ios"
+
+            BuyTab:
+
+
+
+        MDBottomNavigationItem:
+            id: car_tab
+            name: 'car'
+            icon: 'car'
+            badge_icon: "numeric-10"
+            widget_style: "ios"
+
+            MDLabel:
+                text: 'CAR'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            id: contact_tab
+            name: 'contact'
+            icon: 'message'
+            badge_icon: "numeric-10"
+            widget_style: "ios"
+
+            MDLabel:
+                text: 'CONTACT'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            id: account_tab
+            name: 'account'
+            icon: 'account'
+            badge_icon: "numeric-10"
+            widget_style: "ios"
+
+            MDLabel:
+                text: 'ACCOUNT'
+                halign: 'center'
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex("#ffffff")
+            Rectangle:
+                size: self.size
+        orientation: "horizontal"
+        size_hint: 1, .123
+
+        VCMIconButton:
+            id: home_button
+            size_hint: .2, 1
+            source: "assets/icons/home-active.png"
+            widget_style: "ios"
+            on_press: root.on_navi_button_pressed('home')
+        VCMIconButton:
+            id: buy_button
+            color: 1, 1, 1, 1
+            size_hint: .2, 1
+            source: "assets/icons/buy-inactive.png"
+            widget_style: "ios"
+            on_press: root.on_navi_button_pressed('buy')
+        VCMIconButton:
+            id: car_button
+            size_hint: .2, 1
+            source: "assets/icons/car-inactive.png"
+            widget_style: "ios"
+            on_press: root.on_navi_button_pressed('car')
+        VCMIconButton:
+            id: contact_button
+            size_hint: .2, 1
+            source: "assets/icons/contact-inactive.png"
+            widget_style: "ios"
+            on_press: root.on_navi_button_pressed('contact')
+        VCMIconButton:
+            id: account_button
+            size_hint: .2, 1
+            source: "assets/icons/account-inactive.png"
+            widget_style: "ios"
+            on_press: root.on_navi_button_pressed('account')
+
+<NewCarsFilterScreen>:
+    BoxLayout:
+        Button:
+            text: 'Goto settings'
+            on_press: root.manager.current = 'settings'
+        Button:
+            text: 'Quit'
+<BuyScreen>:
+    MDBoxLayout:
+        #size_hint_y: None
+        #height: "200dp"
+        orientation: 'vertical'
+
+        FitImage:
+            size_hint_y: 0.9
+            source: 'assets/images/buy_main.jpg'
+            #pos_hint: {"top": 1}
+            #height: .2
+
+
+        ScrollView:
+
+            MDList:
+
+                OneLineAvatarIconListItem:
+                    on_release: root.manager.current = 'settings'
+
+                    ImageLeftWidget:
+                        source: "assets/icons/account-inactive.png"
+                        ripple_scale: 0
+
+
+                OneLineAvatarIconListItem:
+                    on_release: print("Click 2!")
+
+                    IconLeftWidget:
+                        icon: "gitlab"
+
+
+#    BoxLayout:
+#
+#
+#        #canvas.before:
+#        #    Color:
+#        #        rgba: get_color_from_hex("#ffffff")
+#        #    Rectangle:
+#        #        size: self.size
+#        #orientation: "vertical"
+#        OneLineAvatarListItem:
+#            text: "Single-line item with avatar"
+#
+#                ImageLeftWidget:
+#                    source: "assets/icons/account-inactive.png"
+#
+#
+#        Button:
+#            markup: True
+#            icon: "assets/icons/account-inactive.png"
+#            ltext: "Text left"
+#            rtext: "Text right"
+#            text: 'hhh'
+#            font_size: 25
+#            padding: 0.5, 0
+#
+#
+#
+#
+#        Button:
+#
+#            line_color: (0, 0, 0, 0)
+#            size_hint: 1, 0.2
+#            pos_hint: {"center_x": .5, "center_y": .5}
+#            BoxLayout:
+#                Image:
+#                    source: "assets/icons/account-inactive.png"
+#                Label:
+#                    text: "MDRectangleFlatIconButton"
+#
+#
+#
+#            #ripple_scale: 0
+#
