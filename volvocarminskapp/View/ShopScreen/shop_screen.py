@@ -1,6 +1,6 @@
 from typing import NoReturn
 
-from View.base_screen import BaseScreenView
+from volvocarminskapp.View.base_screen import BaseScreenView
 
 
 class ShopScreenView(BaseScreenView):

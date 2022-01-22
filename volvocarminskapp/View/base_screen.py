@@ -4,7 +4,7 @@ from kivymd.app import MDApp
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.screen import MDScreen
 
-from Utility.observer import Observer
+from volvocarminskapp.Utility.observer import Observer
 
 
 class BaseScreenView(ThemableBehavior, MDScreen, Observer):

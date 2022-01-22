@@ -1,4 +1,4 @@
-from Model.base_model import BaseScreenModel
+from volvocarminskapp.Model.base_model import BaseScreenModel
 
 
 class MainScreenModel(BaseScreenModel):

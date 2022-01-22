@@ -1,13 +1,6 @@
 from typing import NoReturn
-import importlib
 
-#from View.MainScreen.main_screen import MainScreenView
-import View.MainScreen.main_screen
-
-# We have to manually reload the view module in order to apply the
-# changes made to the code on a subsequent hot reload.
-# If you no longer need a hot reload, you can delete this instruction.
-importlib.reload(View.MainScreen.main_screen)
+from volvocarminskapp.View.MainScreen.main_screen import MainScreenView
 
 
 class MainScreenController:
@@ -22,7 +15,7 @@ class MainScreenController:
 
     def __init__(self, model):
         self.model = model  # Model.main_screen.MainScreenModel
-        self.view = View.MainScreen.main_screen.MainScreenView(controller=self, model=self.model)
+        self.view = MainScreenView(controller=self, model=self.model)
 
     def on_tap_button_login(self) -> NoReturn:
         """Called when the `LOGIN` button is pressed."""
@@ -30,7 +23,7 @@ class MainScreenController:
     def set_user_data(self, key, value) -> NoReturn:
         """Called every time the user enters text into the text fields."""
 
-    def get_view(self) -> View.MainScreen.main_screen.MainScreenView:
+    def get_view(self) -> MainScreenView:
         return self.view
 
     def on_navi_button_pressed(self, tab_to_activate):
