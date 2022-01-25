@@ -1,8 +1,8 @@
 from volvocarminskapp.Model.base_model import BaseScreenModel
 
 
-class MainScreenModel(BaseScreenModel):
+class HomeScreenModel(BaseScreenModel):
     """
     Implements the logic of the
-    :class:`~View.MainScreen.main_screen.MainScreenView` class.
+    :class:`~View.HomeScreen.home_screen.HomeScreenView` class.
     """

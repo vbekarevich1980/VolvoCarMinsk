@@ -14,12 +14,17 @@ https://en.wikipedia.org/wiki/Model–view–controller
 
 from kivy.config import Config
 
+
 Config.set('graphics', 'width', '330')
 Config.set('graphics', 'height', '650')
 
-from typing import NoReturn
+from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen
+#from volvocarminskapp.View.MainScreen.main_screen import MainScreen
 
-from kivy.uix.screenmanager import ScreenManager
+
+
+from typing import NoReturn
 
 from kivymd.app import MDApp
 
@@ -32,9 +37,10 @@ class VolvoCarMinskApp(MDApp):
         self.load_all_kv_files(self.directory)
         # This is the screen manager that will contain all the screens of your
         # application.
-        self.manager_screens = ScreenManager()
+        self.main_screen = Builder.load_file('View/MainScreen/main_screen.kv')
+        self.manager_screens = self.main_screen.ids.navi
 
-    def build(self) -> ScreenManager:
+    def build(self) -> Screen:
         """
         Initializes the application; it will be called only once.
         If this method returns a widget (tree), it will be used as the root
@@ -47,7 +53,7 @@ class VolvoCarMinskApp(MDApp):
 
         self.theme_cls.primary_palette = "Amber"
         self.generate_application_screens()
-        return self.manager_screens
+        return self.main_screen
 
     def generate_application_screens(self) -> NoReturn:
         """
@@ -68,5 +74,5 @@ class VolvoCarMinskApp(MDApp):
             view.name = name_screen
             self.manager_screens.add_widget(view)
 
-VolvoCarMinskApp().run()
 
+VolvoCarMinskApp().run()

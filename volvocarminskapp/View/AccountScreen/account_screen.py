@@ -1,9 +1,9 @@
 from typing import NoReturn
 
-from volvocarminskapp.View.base_screen import BaseScreenView
+from volvocarminskapp.View.MainScreen.main_screen import MainScreenBaseView
 
 
-class NewCarsLocatorScreenView(BaseScreenView):
+class AccountScreenView(MainScreenBaseView):
     """Implements the login start screen in the user application."""
 
     def model_is_changed(self) -> NoReturn:
