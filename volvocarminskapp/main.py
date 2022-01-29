@@ -1,78 +1,77 @@
-
 """
 The entry point to the application.
 
-The application uses the MVC template. Adhering to the principles of clean
-architecture means ensuring that your application is easy to test, maintain,
-and modernize.
-
-You can read more about this template at the links below:
-
-https://github.com/HeaTTheatR/LoginAppMVC
-https://en.wikipedia.org/wiki/Model–view–controller
+The application uses the MVC template.
 """
 
 from kivy.config import Config
-
 
 Config.set('graphics', 'width', '330')
 Config.set('graphics', 'height', '650')
 
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
-#from volvocarminskapp.View.MainScreen.main_screen import MainScreen
 
-
-
-from typing import NoReturn
+from typing import NoReturn, Any
 
 from kivymd.app import MDApp
 
-from View.screens import screens
+from View.navigation_tabs import navigation_tabs
 
 
 class VolvoCarMinskApp(MDApp):
-    def __init__(self, **kwargs):
+    """
+    The app main class.
+
+    Attributes
+    ----------
+    :attr main_screen: The instance of the root screen of the application.
+    :type main_screen: :class:`~kivy.uix.screenmanager.Screen`
+
+    :attr navigation: The instance of the bottom navigation of the application.
+    :type navigation: :class:`~kivymd.uix.bottomnavigation.MDBottomNavigation`
+    """
+
+    def __init__(self, **kwargs: [str, Any]) -> None:
+        """
+        Construct an instance of VolvoCarMinskApp class and set main_screen
+        and navigation instances.
+
+        :param kwargs: Any key parameters to be passed.
+        """
         super().__init__(**kwargs)
         self.load_all_kv_files(self.directory)
-        # This is the screen manager that will contain all the screens of your
-        # application.
-        self.main_screen = Builder.load_file('View/MainScreen/main_screen.kv')
-        self.manager_screens = self.main_screen.ids.navi
+        self.main_screen = Builder.load_file('View/main_screen.kv')
+        self.navigation = self.main_screen.ids.navi
 
     def build(self) -> Screen:
         """
-        Initializes the application; it will be called only once.
-        If this method returns a widget (tree), it will be used as the root
-        widget and added to the window.
+        Initialize the application and returns the root widget - a screen;
+        it is called only once.
 
-        :return:
-            None or a root :class:`~kivy.uix.widget.Widget` instance
-            if no self.root exists.
+        :return: The root widget.
         """
+        self.theme_cls.primary_palette = "Amber"  # TODO Set the theme
+        self.generate_navigation_tabs()
 
-        self.theme_cls.primary_palette = "Amber"
-        self.generate_application_screens()
         return self.main_screen
 
-    def generate_application_screens(self) -> NoReturn:
+    def generate_navigation_tabs(self) -> NoReturn:
         """
-        Creating and adding screens to the screen manager.
-        You should not change this cycle unnecessarily. He is self-sufficient.
+        Create and add tabs (screens) to the bottom navigation of the
+        application.
 
-        If you need to add any screen, open the `View.screens.py` module and
-        see how new screens are added according to the given application
-        architecture.
+        If a tab needs to be added, it is done by adding a new tab to the
+        `View.navigation_tabs.py` module.
         """
 
-        for i, name_screen in enumerate(screens.keys()):
-
-            model = screens[name_screen]["model"]()
-            controller = screens[name_screen]["controller"](model)
+        for i, name_tab in enumerate(navigation_tabs.keys()):
+            model = navigation_tabs[name_tab]["model"]()
+            controller = navigation_tabs[name_tab]["controller"](model)
             view = controller.get_view()
-            view.manager_screens = self.manager_screens
-            view.name = name_screen
-            self.manager_screens.add_widget(view)
+            view.navigation = self.navigation
+            view.name = name_tab
+            self.navigation.add_widget(view)
 
 
 VolvoCarMinskApp().run()

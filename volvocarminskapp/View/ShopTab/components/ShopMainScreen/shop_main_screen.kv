@@ -1,0 +1,35 @@
+#:import images_path kivymd.images_path
+
+
+<ShopMainScreenView>:
+    MDBoxLayout:
+        #size_hint_y: None
+        #height: "200dp"
+        orientation: 'vertical'
+
+        FitImage:
+            size_hint_y: 0.9
+            source: 'assets/images/buy_main.jpg'
+            #pos_hint: {"top": 1}
+            #height: .2
+
+
+
+        ScrollView:
+
+            MDList:
+
+                OneLineAvatarIconListItem:
+                    #on_release: print(root.manager_screens.current)
+                    on_release: root.manager_screens.current = 'new_cars_locator'
+
+                    ImageLeftWidget:
+                        source: "assets/icons/account-inactive.png"
+                        ripple_scale: 0
+
+
+                OneLineAvatarIconListItem:
+                    on_release: root.manager_screens.current = 'used_cars_locator'
+
+                    IconLeftWidget:
+                        icon: "gitlab"
