@@ -1,23 +1,39 @@
-#:import images_path kivymd.images_path
-
 
 <UsedCarsLocatorScreenView>:
-    ScrollView:
+
+    MDBoxLayout:
+        orientation: "vertical"
+
         MDBoxLayout:
-            orientation: "vertical"
-            height: new_cars_image.height + new_cars_text.height
             adaptive_height: True
 
+            MDIconButton:
+                icon: "chevron-left"
+                ripple_scale: 0
+                on_release:
+                    root.manager_screens.transition.direction = 'right'
+                    root.manager_screens.current = 'shop_main'
 
-            FitImage:
-                id: new_cars_image
-                source: "assets/images/buy_newcars_locator.jpeg"
+            MDLabel:
+                text: "Автомобили с пробегом в наличии"
+                font_style: "Subtitle2"
 
+        ScrollView:
             MDBoxLayout:
-                id: new_cars_text
-                padding: dp(5)
-                size_hint_y: .3
+                orientation: "vertical"
+                height: new_cars_image.height + new_cars_text.height
+                adaptive_height: True
 
-                MDLabel:
-                    text: "USED CARS"
-                    bold: True
+
+                FitImage:
+                    id: new_cars_image
+                    source: "assets/images/buy_newcars_locator.jpeg"
+
+                MDBoxLayout:
+                    id: new_cars_text
+                    padding: dp(5)
+                    size_hint_y: .3
+
+                    MDLabel:
+                        text: "USED CARS"
+                        bold: True

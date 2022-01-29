@@ -21,7 +21,9 @@
 
                 OneLineAvatarIconListItem:
                     #on_release: print(root.manager_screens.current)
-                    on_release: root.manager_screens.current = 'new_cars_locator'
+                    on_release:
+                        root.manager_screens.transition.direction = 'left'
+                        root.manager_screens.current = 'new_cars_locator'
 
                     ImageLeftWidget:
                         source: "assets/icons/account-inactive.png"
@@ -29,7 +31,9 @@
 
 
                 OneLineAvatarIconListItem:
-                    on_release: root.manager_screens.current = 'used_cars_locator'
+                    on_release:
+                        root.manager_screens.transition.direction = 'left'
+                        root.manager_screens.current = 'used_cars_locator'
 
                     IconLeftWidget:
                         icon: "gitlab"
