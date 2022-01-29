@@ -1,0 +1,23 @@
+#:import images_path kivymd.images_path
+
+
+<HomeMainScreenView>:
+    ScrollView:
+        MDBoxLayout:
+            orientation: "vertical"
+            height: new_cars_image.height + new_cars_text.height
+            adaptive_height: True
+
+
+            FitImage:
+                id: new_cars_image
+                source: "assets/images/buy_newcars_locator.jpeg"
+
+            MDBoxLayout:
+                id: new_cars_text
+                padding: dp(5)
+                size_hint_y: .3
+
+                MDLabel:
+                    text: "HOME"
+                    bold: True
